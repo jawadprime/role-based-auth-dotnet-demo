@@ -50,19 +50,7 @@ This system is highly **extensible** and can be easily adapted to multiple resou
 
 2. (Optional) Go to the `.env` file in the root folder and place your configurations accordingly.
 
-3. Configure the PostgreSQL connection string in `appsettings.json`.
-
-4. Run the database migrations:
-   ```bash
-   dotnet ef database update
-   ```
-
-5. Run the application:
-   ```bash
-   dotnet run
-   ```
-
-6. (Optional) Start PostgreSQL via Docker Compose:
+3. Run locally via Docker Compose:
    ```bash
    docker-compose up -d
    ```
@@ -73,5 +61,5 @@ This system is highly **extensible** and can be easily adapted to multiple resou
 
 - **Add new resources:** Define the resource and associate roles and permissions.
 - **Caching:** Integrate Redis caching to optimize permission lookups.
-- **Custom roles/permissions:** Extend existing enums or tables to add new roles or permissions.
+- **Custom roles/permissions:** Insert new roles and permissions in their respective tables.
 
