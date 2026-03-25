@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  minimalapi:
+    build:
+      context: .
+      dockerfile: ApiPresentation/Dockerfile
+    ports:
+      - "8080:8080"
+      - "443:443"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy   # 🔥 THIS is the key
+
+volumes:
+  pgdata:
